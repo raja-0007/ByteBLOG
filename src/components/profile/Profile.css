@@ -1,0 +1,214 @@
+.pf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 3px silver;
+}
+.pf>:nth-child(1){
+    font-size: 12rem;
+    
+}
+.pf>:nth-child(2){
+    
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.phead{
+    width: 600px;
+    padding: 10px 10px 10px 10px;
+    background-color: #e0f8f4;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+#profile-heading{
+    font-size: 18px;
+    font-weight: 600;
+}
+.editbtn{
+    background-color: #48a294;
+    border: 2px solid #398378;
+    color: white;
+    font-size: 16px;
+    padding: 2px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .3s;
+    
+}
+.editbtn:hover{
+    background-color: hsl(0, 0%, 100%);
+    color: #398378;
+    
+}
+.donebtn{
+    border: 2px solid rgb(251, 166, 106);
+    background-color: rgb(251, 166, 106);
+    font-size: 16px;
+    padding: 2px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.donebtn:hover{
+    background-color: rgb(195, 111, 51);
+    
+    background-color: hsl(0, 0%, 100%);
+    color: rgb(195, 111, 51);
+}
+
+.myblogs>:nth-child(1){
+    
+    display: flex;
+   
+    justify-content: center;
+    
+}
+.myblogs>:nth-child(1)>*{
+    border-bottom: 2px solid black;
+    height: 28px;
+
+}
+.p-blog{
+    display: flex;
+    
+    width: 97%;
+    height: max-content;
+    border: 0px;
+    box-shadow: 0px 0px 10px 2px silver;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all .3s;
+    background-color: hsl(0, 0%, 75%,.15);
+}
+.p-blog:hover{
+    transform: scale(.98);
+    box-shadow: 0px 0px 10px 4px rgb(195, 111, 51,.4);
+    box-shadow: none;
+    
+}
+.p-blog>:nth-child(1){
+    width: 50%;
+    height: 230px;
+    background-color: hsl(171, 39%, 37%,.4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.p-blog>:nth-child(2){
+    position: relative;
+    width: 50%;
+    height: 230px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+
+}
+.p-blog>:nth-child(2)>:nth-child(1){
+    display: flex;
+    flex-direction: column;
+}
+.p-cmtlikediv{
+    width: 100%;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 21px;
+    
+    color: #398378;
+    position: absolute;
+    bottom: 0;
+    background-color: hsl(0, 0%, 75%,.9);
+   
+    
+}
+
+.p-cmtlikediv>:nth-child(2){
+    height: 25px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+}
+.p-blog-in{
+    height:230px;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+}
+.p-blog-in>:nth-child(1){
+    text-align: center;
+    font-weight: 800;
+    font-size: 21px;
+    text-transform: uppercase;
+    color: rgb(195, 111, 51);
+
+}
+.p-blog-in>:nth-child(2){
+    width: 90%;
+    height: 180px;
+    line-height: 20px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    
+}
+.p-feather{
+    width: 20px;
+}
+.p-userdetails{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 90%;
+}
+
+.p-userdetails>:nth-child(2)>:nth-child(1){
+    color: rgb(213, 126, 64);
+}
+.p-about{
+    width: 90%;
+    display: flex;
+    flex-direction: column; 
+    
+}
+.pabout-txt{
+    color: gray;
+    line-height: 16px;
+    font-size: 15.5px;
+}
+
+.nameinp{
+    width: 200px;
+    height: 30px;
+    
+    border: 0px;
+    border-bottom: 1px solid rgb(213, 126, 64);
+    outline: none;
+}
+.aboutinp{
+    outline: none;
+    resize: none;
+    width: 90%;
+    height: 60px;
+    padding: 5px 10px;
+    border: 1px solid rgb(213, 126, 64);
+    background-color: hsl(0, 0%, 75%,.1);
+    border-radius: 10px;
+    font-size: 16px;
+}

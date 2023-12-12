@@ -1,0 +1,94 @@
+
+.l-wrapper{
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/blogbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    gap: 2rem;
+    
+}
+.l-wrapper1{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+.l-wrapper1>:nth-child(1){
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    height: max-content;
+    color: white;
+}
+.l-wrapper2{
+    padding: 30px 100px;
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 100%,.4);
+    box-shadow: 0px 0px 74px 5px black;
+}
+.l-wrapper2>:nth-child(1){
+    font-size: 3rem;
+    font-weight: bold;
+}
+.l-wrapper2>:nth-child(1)>:nth-child(1){
+    color: #ffd700;
+}
+.signinform{
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.signupform{
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.authinp{
+    width: 250px;
+    height: 35px;
+    padding-left: 10px;
+    outline: none;
+    border: 0px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 3px gray;
+
+    
+}
+
+
+
+.bzlogo{
+    width: 50px;
+}
+input[type=radio]{
+    accent-color: #ffd700;
+    cursor: pointer;
+}
+.l-logo2{
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}
+
+
