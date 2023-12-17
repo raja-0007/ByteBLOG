@@ -34,7 +34,7 @@ function Blog({ usermail, currentuser }) {
         let src2 = 'http://localhost:777/comments/' + id
         await axios.get(src2)
             .then(res => setComments(res.data))
-        
+
     }
     let submithandler = async (e) => {
         e.preventDefault()
@@ -48,11 +48,17 @@ function Blog({ usermail, currentuser }) {
 
     }
     useEffect(() => {
+        window.screenY = 0
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior:'smooth'
+        })
         let getdata = async () => {
             let src = 'http://localhost:777/comments-likes/' + id
             await axios.get(src)
                 .then(res => setcred(res.data))
-           
+
         }
         getdata()
 
@@ -62,19 +68,20 @@ function Blog({ usermail, currentuser }) {
         setLikes(details.likes)
     }
     useEffect(() => {
-        
-        likes.forEach(like=>{
-            if(like.user == usermail){
-                
+
+        likes.forEach(like => {
+            if (like.user == usermail) {
+
                 document.getElementById('like-icon').className = 'fa-solid fa-heart op2'
             }
         })
-        
+
     }, [likes])
 
     let likehandler = async () => {
         if (usermail !== '') {
             let className = document.getElementById('like-icon').className
+            
             document.getElementById('like-icon').style.transition = 'all 0s'
             if (className == 'fa-regular fa-heart op') {
                 document.getElementById('like-icon').className = 'fa-solid fa-feather op3'
@@ -97,20 +104,20 @@ function Blog({ usermail, currentuser }) {
         document.getElementById('like-icon').className = 'fa-solid fa-heart op2'
         setLikes(likelist)
     }
-    let getprofile=()=>{
-        if(usermail !== o_user){
-            navigate('/profile2',{state:{user:o_user}})
+    let getprofile = () => {
+        if (usermail !== o_user) {
+            navigate('/profile2', { state: { user: o_user } })
         }
-        else{
+        else {
             navigate('/profile')
         }
-        
+
     }
 
 
     return (
         <div className='row p-0 mt-5'>
-            <div className='col-10 p-0 pb-5 mb-5 mx-auto blog-wrapper'>
+            <div className='col-sm-10 col-11 p-0 pb-5 mb-5 mx-auto blog-wrapper'>
 
                 <div className='imgdiv mx-auto'><img src={setimg(image)} className='img-fluid mx-auto'></img></div>
                 <div className='blogdiv mx-auto'>
@@ -119,7 +126,7 @@ function Blog({ usermail, currentuser }) {
                 </div>
                 <div className='authordiv' onClick={getprofile}><i class="fa-solid fa-circle-user"></i>&nbsp;{username}<img src={logo} className='author-logo'></img></div>
                 <div className='b-likes mt-4'>
-                   
+                    <span>
                         <i className="fa-regular fa-heart op" id='like-icon' onClick={likehandler}></i>
                         &nbsp;
                         {(likes.length > 1 || likes.length == 0) ? (
@@ -127,8 +134,12 @@ function Blog({ usermail, currentuser }) {
                         ) : (
                             <span className='likecount'>{likes.length} like</span>
                         )}
-                    
+                    </span>
+
+
+
                 </div>
+
                 <div className='comments-wrapper mx-auto mt-1'>
                     <span>Comments: </span>
                     {comments.length == 0 ? (

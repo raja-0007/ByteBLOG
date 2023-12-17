@@ -7,14 +7,14 @@ import feather from '../images/feather.png'
 function Profile({ currentuser, usermail, pedit, pabout }) {
 
     const [blogs, setBlogs] = useState([])
-    const [isedit,setIsedit] = useState(false)
-    const [name,setName] = useState(currentuser)
-    const [about,setAbout] = useState(pabout)
-    
+    const [isedit, setIsedit] = useState(false)
+    const [name, setName] = useState(currentuser)
+    const [about, setAbout] = useState(pabout)
+
     useEffect(() => {
 
         console.log('mounted')
-        
+
         let getdata = async () => {
 
             await axios.get('http://localhost:777/home')
@@ -24,13 +24,13 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
             console.log('returned')
 
         }
-        
+
 
         getdata()
-        
-        
+
+
     }, [])
-    useEffect(()=>{
+    useEffect(() => {
         let getlikes = () => {
             //console.log(blogs)
             blogs.filter(blog => blog.user == usermail).forEach((blog, index) => {
@@ -47,8 +47,8 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
             })
         }
         getlikes()
-    },[blogs])
-    
+    }, [blogs])
+
     $(document).ready(() => {
 
         $('.p-cmtlikediv').hide()
@@ -106,60 +106,62 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
         setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: likelist }) : (blog)))
 
     }
-    let edit=()=>{
+    let edit = () => {
         document.getElementById('profile-heading').innerText = 'Edit Profile'
         setIsedit(true)
-        console.log(name,currentuser)
+        console.log(name, currentuser)
     }
-    
-    let namehandler=(e)=>{
+
+    let namehandler = (e) => {
         setName(e.target.value)
     }
-    let abouthandler=(e)=>{
+    let abouthandler = (e) => {
         setAbout(e.target.value)
     }
 
-    let done=()=>{
+    let done = () => {
         document.getElementById('profile-heading').innerText = 'Profile'
         setIsedit(false)
-        if(name !== ''){
-            pedit(name,about)
+        if (name !== '') {
+            pedit(name, about)
         }
     }
     return (
         <div className='row mt-5'>
-            <div className='col-lg-7 col-11 p-3 pf mx-auto'>
+            <div className='col-xl-7 col-lg-8 col-md-11 col-11  pf mx-auto'>
                 <i class="fa-solid fa-circle-user text-secondary"></i>
                 <span>
                     <span className='phead'>
-                        <span id='profile-heading'>Profile</span> 
-                        { isedit ? (<span onClick={done} className='donebtn'>done</span>):(<span onClick={edit} className='editbtn'>edit profile</span>)}
+                        <span id='profile-heading'>Profile</span>
+                        {isedit ? (<span onClick={done} className='donebtn'>done</span>) : (<span onClick={edit} className='editbtn'>edit profile</span>)}
                     </span>
 
                     <span className='p-userdetails mx-auto'>
                         <span >
-                            { isedit ? (<input className='nameinp' value={name} placeholder={currentuser} onChange={namehandler}></input>):(<span>{currentuser}</span>)}
+                            {isedit ? (<input className='nameinp' value={name} placeholder={currentuser} onChange={namehandler}></input>) : (<span>{currentuser}</span>)}
                             <img src={feather} className='p-feather'></img>
                         </span>
 
                         <span>
-                            <i class="fa-solid fa-envelope"></i>&nbsp;{usermail}</span>
+                            <i class="fa-solid fa-envelope"></i>&nbsp;{usermail}
+                        </span>
                     </span>
 
                     <span className='p-about mx-auto'>
                         <span>About:</span>
-                        { isedit ? (<textarea className='aboutinp' placeholder={pabout} onChange={abouthandler}>{pabout}</textarea>):(<span className='pabout-txt'>{pabout}</span>)}
-                        
-                        
+                        {isedit ? (<textarea className='aboutinp' placeholder={pabout} onChange={abouthandler}>{pabout}</textarea>) : (<span className='pabout-txt'>{pabout}</span>)}
+
+
                     </span>
                 </span>
             </div>
-            <div className='col-10 mt-5 myblogs mx-auto'>
+            <div className='col-sm-10 col-11 mt-5 myblogs mx-auto'>
                 <span >
-                    <span>my bytes</span>
+                    <span>my Bytes</span>
                 </span>
                 <div className='row mt-4'>
-                    {blogs.filter(blog => blog.user == usermail).map((blog, index) =>
+                    {blogs.filter(blog => blog.user == usermail).length !== 0 ? (
+                        blogs.filter(blog => blog.user == usermail).map((blog, index) =>
                         <div key={index} className='col-lg-6 col-12 mb-5'>
                             <div className='p-blog mx-auto ' id={'p-blog' + index}>
                                 <div className='mx-auto'>
@@ -193,14 +195,18 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
                                     </div>
 
 
-                                    {/*<i class="fa-solid fa-heart"></i>*/}
                                 </div>
 
 
                             </div>
 
                         </div>
+                    )
+                    
+                    ):(
+                        <div className='nobytes'>No Bytes yet...</div>
                     )}
+                    
                 </div>
 
             </div>

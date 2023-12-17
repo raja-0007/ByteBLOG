@@ -57,12 +57,12 @@ function Edit({editbyte}) {
                         <label for='imgfile' className='img-inp'><img src={uplogo}></img><span id='imginp_txt'>upload image</span></label>
                         </span>
                         
-                        <button id="postbtn" class="c-pbtn" type="submit">post</button>
+                        <button id="postbtn" className="c-pbtn" type="submit">post</button>
                     </div>
                     
                     <textarea placeholder="Blog Content..." name="content" id=""
                         className="blogcontent" onChange={contenthandler}>{content}</textarea>
-                        <button id="postbtn2" class=" btn btn-outline-warning " type="submit">post</button>
+                        <button id="postbtn2" className="c-pbtn" type="submit">post</button>
 
 
                 </form>

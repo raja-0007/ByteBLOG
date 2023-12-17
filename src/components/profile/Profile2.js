@@ -149,9 +149,10 @@ function Profile2({usermail}) {
             </div>
             <div className='col-10 mt-5 myblogs mx-auto'>
                 <span >
-                    <span>my bytes</span>
+                    <span>Bytes</span>
                 </span>
                 <div className='row mt-4'>
+                    
                     {blogs.filter(blog => blog.user == o_user).map((blog, index) =>
                         <div key={index} className='col-lg-6 col-12 mb-5'>
                             <div className='p-blog mx-auto ' id={'p-blog' + index}>

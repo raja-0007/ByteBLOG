@@ -36,6 +36,12 @@ function Login({ loginhandler }) {
             setCurrentuser(cred.user)
             setUsermail(cred.email)
         }
+        else if(cred.exist == true && cred.pstatus == false){
+            alert('wrong password')
+        }
+        else{
+            alert('no account exists')
+        }
 
 
     }
@@ -52,7 +58,7 @@ function Login({ loginhandler }) {
         loginhandler(usermail, currentuser)
     }, [usermail, currentuser])
     return (
-        <div className='row l-wrapper'>
+        <div className='row l-wrapper ps-4 pe-4'>
 
             <div class="col-11 l-wrapper2">
                 <Link to={'/'} className='logo '><img src={logo} className='img-fluid'></img></Link>
@@ -63,7 +69,7 @@ function Login({ loginhandler }) {
 
                     <input class="btn btn-outline-success" type="submit" value="signin" />
                 </form>
-                Are you a new user? <Link to={"/register"} state={{action:action}}><button class="btn btn-outline-danger">signup</button></Link>
+                <span>Are you a new user?</span> <Link to={"/register"} state={{action:action}}><button class="btn btn-outline-danger">signup</button></Link>
             </div>
         </div>
     )

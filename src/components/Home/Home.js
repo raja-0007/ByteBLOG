@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Home.css'
 import axios from 'axios'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo2 from '../images/bblogo22.png'
 import feather from '../images/feather.png'
 import Hblog from './Hblog'
@@ -9,6 +9,7 @@ import logo from '../images/bblogo2.png'
 function Home({ usermail, currentuser}) {
 
     const [blogs, setBlogs] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
 
@@ -89,6 +90,7 @@ function Home({ usermail, currentuser}) {
             }
         }
         
+        
 
     }
     let liked = (index, id, likelist) => {
@@ -98,6 +100,7 @@ function Home({ usermail, currentuser}) {
         setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: likelist }) : (blog)))
 
     }
+    
 
 
 
@@ -109,9 +112,9 @@ function Home({ usermail, currentuser}) {
         <>
             <div className='row home'>
                 <div className='col-12 p-0'>
-                    <div className='h-1'>
+                    <div className='h-1 ps-3 pe-3'>
                         <div><img className='logo2' src={logo2}></img></div>
-                        <div></div>
+                        
                         <div>
                             <span class="h-bztitle text-light">ByteBLOG</span>
                             <span class="h-bzquote">Where the Internet is about availability of information,<br /> blogging is

@@ -61,24 +61,40 @@ var currentusername = ''
 })
 */
 app.post('/login', async (req, res) => {
-
+    const pword = req.body.password
     const userslist = await users.find({ email: req.body.email })
     if (userslist.length !== 0) {
         currentuser = req.body.email
         currentusername = userslist[0].username
         const about = await users.find({email:currentuser})
-        res.send({
-            login: true,
-            user: currentusername,
-            email: currentuser,
-            about:about[0].about
-        })
+        if(pword == about[0].password){
+            res.send({
+                login: true,
+                user: currentusername,
+                email: currentuser,
+                about:about[0].about,
+                pstatus:true,
+                exist:true
+            })
+        }
+        else{
+            res.send({
+                login: false,
+                user: '',
+                email: '',
+                pstatus:false,
+                exist:true
+            })
+        }
+        
     }
     else {
         res.send({
             login: false,
             user: '',
-            email: ''
+            email: '',
+            pstatus:false,
+            exist:false
         })
     }
 })

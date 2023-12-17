@@ -41,7 +41,7 @@ function Create({ addbyte }) {
     return (
 
         <div class="row mt-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+            <div class="col-lg-8 col-md-11 col-sm-11 mx-auto">
                 <h3 class="heading mx-auto" >Create Your <span>Byte</span><img className='c-feather' src={feather}></img></h3>
                 <form class="c-blogform" onSubmit={submithandler} enctype="multipart/form-data" >
                     <div class="rounded">
@@ -51,10 +51,10 @@ function Create({ addbyte }) {
                             <input type="file" name="image" accept="image/*" id="imgfile" onChange={imagehandler} />
                             <label for='imgfile' className='img-inp'>{/*<i class="fa-solid fa-cloud-arrow-up"></i>*/}<img src={uplogo}></img><span id='imginp_txt'>upload image</span></label>
                         </span>
-                        <button id="postbtn" class="c-pbtn" type="submit">post</button>
+                        <button id="postbtn" className="c-pbtn" type="submit">post</button>
                     </div>
                     <textarea placeholder="Blog Content..." name="content" id="" class="blogcontent" onChange={contenthandler}>{content}</textarea>
-                    <button id="postbtn2" class=" btn btn-outline-warning " type="submit">post</button>
+                    <button id="postbtn2" className="c-pbtn" type="submit">post</button>
 
 
                 </form>
