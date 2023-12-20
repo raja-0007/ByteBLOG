@@ -205,6 +205,9 @@
         justify-content: center;
         align-items: center;
     }
+    .blog:hover{
+        transform: scale(1.01);
+    }
 
     
 }

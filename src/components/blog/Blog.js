@@ -30,10 +30,9 @@ function Blog({ usermail, currentuser }) {
 
         let src = 'http://localhost:777/cmtdelblog/' + id + '/cmtdelcmt/' + index
         await axios.get(src)
-            .then(res => console.log(res.data))
-        let src2 = 'http://localhost:777/comments/' + id
-        await axios.get(src2)
             .then(res => setComments(res.data))
+        let src2 = 'http://localhost:777/comments/' + id
+        
 
     }
     let submithandler = async (e) => {

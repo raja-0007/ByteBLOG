@@ -137,7 +137,7 @@ function Home({ usermail, currentuser}) {
                     <div className='row'>
                         {/*<Hblog usermail={usermail} blog={blog} index={index} delete_byte={delete_byte} />*/}
                         {blogs.map((blog, index) =>
-                            <div key={index} className='col-lg-3 col-sm-6 col-11 mx-auto mb-5'>
+                            <div key={index} className='col-lg-3 col-sm-6 col-12 mb-5'>
                                 <div className='blog mx-auto'>
                                     <div className='mx-auto'>
                                         <img src={imp(blog.image)} className='img-fluid mx-auto'></img>

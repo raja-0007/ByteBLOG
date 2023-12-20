@@ -54,7 +54,7 @@ function Edit({editbyte}) {
                         <input type="c-text" class="c-title" placeholder="title" name="title" value={title} onChange={titlehandler} id=""/>
                         <span class="addimg">
                         <input type="file" name="image" accept="image/*" id="imgfile" onChange={imagehandler}/>
-                        <label for='imgfile' className='img-inp'><img src={uplogo}></img><span id='imginp_txt'>upload image</span></label>
+                        <label for='imgfile' className='img-inp'><img src={uplogo}></img><span id='imginp_txt'>change image</span></label>
                         </span>
                         
                         <button id="postbtn" className="c-pbtn" type="submit">post</button>
