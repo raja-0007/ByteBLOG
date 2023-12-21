@@ -23,13 +23,13 @@ function App() {
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
     let authentication = async () => {
-      await axios.get('http://localhost:777/authentication')
+      await axios.get('http://byte-blog-liard.vercel.app/authentication')
         .then(res => setcred(res.data))
 
     }
     let getdata = async () => {
 
-      await axios.get('http://localhost:777/home')
+      await axios.get('http://byte-blog-liard.vercel.app/home')
 
 
         .then(res => setBlogs(res.data))
@@ -50,7 +50,7 @@ function App() {
     //console.log(cred.about)
   }
   async function logouthandler() {
-    await axios.get('http://localhost:777/logout')
+    await axios.get('http://byte-blog-liard.vercel.app/logout')
       .then(res => console.log(res.data))
     setCurrentuser('')
     setUsermail('')
@@ -74,7 +74,7 @@ function App() {
   let pedit=async(name,about)=>{
      setCurrentuser(name)
      setAbout(about)
-     await axios.post('http://localhost:777/editprofile',{name:name,about:about})
+     await axios.post('http://byte-blog-liard.vercel.app/editprofile',{name:name,about:about})
      .then(console.log('profile edited'))
   }
   
