@@ -16,7 +16,7 @@ function Home({ usermail, currentuser}) {
         console.log('mounted')
         let getdata = async () => {
 
-            await axios.get('http://byte-blog-liard.vercel.app/home')
+            await axios.get('http://localhost:777/home')
                 .then(res => setBlogs(res.data))
                 .then(console.log(blogs))
                 .catch(err => console.log(err))
@@ -34,7 +34,7 @@ function Home({ usermail, currentuser}) {
 
     let delete_byte = async (id) => {
 
-        let src = 'http://byte-blog-liard.vercel.app/delete/' + id
+        let src = 'http://localhost:777/delete/' + id
         await axios.get(src)
             .then(res => setBlogs(res.data))
     }
@@ -77,13 +77,13 @@ function Home({ usermail, currentuser}) {
             document.getElementById(index).style.transition = 'all 0s'
             if (className == 'fa-regular fa-heart op') {
                 document.getElementById(index).className = 'fa-solid fa-feather op3'
-                await axios.post('http://byte-blog-liard.vercel.app/like', { id: id, action: 'like' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'like' })
                     .then(res => setTimeout(() => liked(index, id, res.data), 500))
 
             }
             else {
                 document.getElementById(index).className = 'fa-regular fa-heart op'
-                await axios.post('http://byte-blog-liard.vercel.app/like', { id: id, action: 'unlike' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'unlike' })
                     .then(res => setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: res.data }) : (blog)))
                     )
 
