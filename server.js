@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 const connectdb = async () => {
+    //updater
     /*
     await mongoose.connect('mongodb://127.0.0.1:27017/blogzenith')
         .then(console.log('db connected...'))
