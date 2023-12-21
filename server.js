@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bparser = require('body-parser')
 const app = express()
 const multer = require('multer')
+const mongoclient = require('mongodb')
 const cors = require('cors')
 const corsoptions = {
     origin: '*',
@@ -18,9 +19,23 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 const connectdb = async () => {
+    /*
     await mongoose.connect('mongodb://127.0.0.1:27017/blogzenith')
         .then(console.log('db connected...'))
         .catch(err => console.log('err in db connection', err))
+        */
+    const url = 'mongodb+srv://raja:07rajams@cluster0.akcklga.mongodb.net/?retryWrites=true&w=majority'
+    const client = new mongoclient(url,{
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+    })
+    try{
+        await client.connect()
+        .then(console.log('success'))
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 connectdb()
 app.use(bparser.json())
