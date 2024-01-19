@@ -27,14 +27,7 @@ app.use(bparser.json())
 
 app.use(cors(corsoptions))
 
-/*app.use(express.static('./views'))
-app.set('views', './views')
-app.set('view engine', 'ejs')
-app.use(session({
-    secret:'raja',
-    resave:false,
-    saveUninitialized:false
-}))*/
+
 const userschema = mongoose.Schema({
     username: String,
     email: String,
@@ -55,11 +48,7 @@ const blogschema = mongoose.Schema({
 const blogs = mongoose.model('blogs', blogschema)
 var currentuser = ''
 var currentusername = ''
-/*app.get('/', (req, res) => {
 
-    res.render('signin')
-})
-*/
 app.post('/login', async (req, res) => {
     const pword = req.body.password
     const userslist = await users.find({ email: req.body.email })
@@ -99,13 +88,7 @@ app.post('/login', async (req, res) => {
     }
 })
 
-/*
-app.get('/signup', async (req, res) => {
 
-
-    res.render('signup')
-})
-*/
 app.post('/signup', async (req, res) => {
 
     const userslist = await users.find({ email: req.body.email })
@@ -150,11 +133,7 @@ app.get('/home', async (req, res) => {
         .then((result) => res.json(result.reverse()))
 
 })
-/*
-app.get('/create', (req, res) => {
-    res.render('create')
-})
-*/
+
 app.post('/create', upload.single('image'), async (req, res) => {
 
     const newblog = new blogs({
@@ -184,18 +163,7 @@ app.get('/delete/:id', async (req, res) => {
     await blogs.find({})
         .then(result => res.json(result.reverse()))
 })
-/*
-var editblog = ''
-app.get('/editpage',async(req,res)=>{
-    res.render('edit',{blog:editblog})
-})
-app.get('/edit/:id', async (req, res) => {
-    const result = await blogs.findById(req.params.id)
-    editblog = result
-    res.redirect('/editpage')
 
-})
-*/
 app.post('/update/:id', upload.single('image'), async (req, res) => {
 
     try {

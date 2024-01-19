@@ -5,59 +5,55 @@ import $ from 'jquery'
 import { Link } from 'react-router-dom'
 import feather from '../images/feather.png'
 
-function Profile2({usermail}) {
+function Profile2({ usermail }) {
     const location = useLocation()
     const o_user = location.state.user
-    const [blogs,setBlogs] = useState([])
-    const [name,setName] = useState('')
-    const [about,setAbout] = useState('')
-    
+    const [blogs, setBlogs] = useState([])
+    const [name, setName] = useState('')
+    const [about, setAbout] = useState('')
+
     useEffect(() => {
 
         console.log('mounted')
-        
+
         let getdata = async () => {
 
             console.log(o_user)
-            await axios.get('http://localhost:777/getprofile/'+o_user)
+            await axios.get('http://localhost:777/getprofile/' + o_user)
                 .then(res => setcred(res.data))
                 .catch(err => console.log(err))
-            
+
             await axios.get('http://localhost:777/home')
                 .then(res => setBlogs(res.data))
                 .catch(err => console.log(err))
 
         }
-        
+
 
         getdata()
-        
-        
+
+
     }, [])
-    let setcred=(details)=>{
+    let setcred = (details) => {
         console.log(details)
         setName(details[0].username)
         setAbout(details[0].about)
     }
-    useEffect(()=>{
+    useEffect(() => {
         let getlikes = () => {
-            //console.log(blogs)
             blogs.filter(blog => blog.user == o_user).forEach((blog, index) => {
 
                 blog.likes.forEach(like => {
-                    //console.log(like.user, usermail)
                     if (like.user == usermail) {
                         document.getElementById(index).className = 'fa-solid fa-heart op2'
-                        //console.log(document.getElementById(index).className)
-
 
                     }
                 })
             })
         }
         getlikes()
-    },[blogs])
-    
+    }, [blogs])
+
     $(document).ready(() => {
 
         $('.p-cmtlikediv').hide()
@@ -76,7 +72,6 @@ function Profile2({usermail}) {
 
     let imp = (imgname) => {
 
-        //console.log(imgname)
 
         return require('../images/' + imgname)
 
@@ -105,28 +100,21 @@ function Profile2({usermail}) {
     let liked = (index, id, likelist) => {
         document.getElementById(index).style.transition = 'all .3s'
         document.getElementById(index).className = 'fa-solid fa-heart op2'
-        //setLikes([...likes,{user:usermail}])
         setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: likelist }) : (blog)))
 
     }
-    
-    
-    let namehandler=(e)=>{
-        setName(e.target.value)
-    }
-    let abouthandler=(e)=>{
-        setAbout(e.target.value)
-    }
 
-    
-  return (
-    <div className='row mt-5'>
+
+
+
+    return (
+        <div className='row mt-5'>
             <div className='col-lg-7 col-11 p-3 pf mx-auto'>
                 <i class="fa-solid fa-circle-user text-secondary"></i>
                 <span>
                     <span className='phead'>
-                        <span id='profile-heading'>Profile</span> 
-                        
+                        <span id='profile-heading'>Profile</span>
+
                     </span>
 
                     <span className='p-userdetails mx-auto'>
@@ -142,8 +130,8 @@ function Profile2({usermail}) {
                     <span className='p-about mx-auto'>
                         <span>About:</span>
                         <span className='pabout-txt'>{about}</span>
-                        
-                        
+
+
                     </span>
                 </span>
             </div>
@@ -152,7 +140,7 @@ function Profile2({usermail}) {
                     <span>Bytes</span>
                 </span>
                 <div className='row mt-4'>
-                    
+
                     {blogs.filter(blog => blog.user == o_user).map((blog, index) =>
                         <div key={index} className='col-lg-6 col-12 mb-5'>
                             <div className='p-blog mx-auto ' id={'p-blog' + index}>
@@ -169,7 +157,6 @@ function Profile2({usermail}) {
                                     </div>
                                     <div className='p-cmtlikediv mx-auto' id={'cmtlkdiv' + index}>
                                         <span>
-                                            {/* blog.likes.includes({user:usermail}) ? (<i className="fa-regular fa-heart op2" onClick={() => likehandler(index, blog._id)} id={index}></i>):(<span id={index}>hell</span>)*/}
                                             <i className="fa-regular fa-heart op" onClick={() => likehandler(index, blog._id)} id={index}></i>
                                             &nbsp;
                                             {(blog.likes.length > 1 || blog.likes.length == 0) ? (
@@ -182,8 +169,6 @@ function Profile2({usermail}) {
                                         <Link to={'/blog'} state={{ blog: blog }} className='cmt'><i class="fa-solid fa-message op"></i></Link>
                                     </div>
 
-
-                                    {/*<i class="fa-solid fa-heart"></i>*/}
                                 </div>
 
 
@@ -195,7 +180,7 @@ function Profile2({usermail}) {
 
             </div>
         </div>
-  )
+    )
 }
 
 export default Profile2

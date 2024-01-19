@@ -20,7 +20,7 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
             await axios.get('http://localhost:777/home')
                 .then(res => setBlogs(res.data))
                 .catch(err => console.log(err))
-            //getlikes()
+
             console.log('returned')
 
         }
@@ -32,15 +32,13 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
     }, [])
     useEffect(() => {
         let getlikes = () => {
-            //console.log(blogs)
+
             blogs.filter(blog => blog.user == usermail).forEach((blog, index) => {
 
                 blog.likes.forEach(like => {
-                    //console.log(like.user, usermail)
+
                     if (like.user == usermail) {
                         document.getElementById(index).className = 'fa-solid fa-heart op2'
-                        //console.log(document.getElementById(index).className)
-
 
                     }
                 })
@@ -73,8 +71,6 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
     }
     let imp = (imgname) => {
 
-        //console.log(imgname)
-
         return require('../images/' + imgname)
 
     }
@@ -102,7 +98,7 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
     let liked = (index, id, likelist) => {
         document.getElementById(index).style.transition = 'all .3s'
         document.getElementById(index).className = 'fa-solid fa-heart op2'
-        //setLikes([...likes,{user:usermail}])
+
         setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: likelist }) : (blog)))
 
     }
@@ -162,51 +158,50 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
                 <div className='row mt-4'>
                     {blogs.filter(blog => blog.user == usermail).length !== 0 ? (
                         blogs.filter(blog => blog.user == usermail).map((blog, index) =>
-                        <div key={index} className='col-lg-6 col-12 mb-5'>
-                            <div className='p-blog mx-auto ' id={'p-blog' + index}>
-                                <div className='mx-auto'>
-                                    <img src={imp(blog.image)} className='img-fluid mx-auto'></img>
-                                </div>
-
-                                <div className='mx-auto'>
-                                    <div className='p-blog-in'>
-                                        <span>{blog.title}</span>
-
-                                        <Link to={'/blog'} state={{ blog: blog }}>{blog.content}</Link>
-
-                                    </div>
-                                    <div className='p-cmtlikediv mx-auto' id={'cmtlkdiv' + index}>
-                                        <span>
-                                            {/* blog.likes.includes({user:usermail}) ? (<i className="fa-regular fa-heart op2" onClick={() => likehandler(index, blog._id)} id={index}></i>):(<span id={index}>hell</span>)*/}
-                                            <i className="fa-regular fa-heart op" onClick={() => likehandler(index, blog._id)} id={index}></i>
-                                            &nbsp;
-                                            {(blog.likes.length > 1 || blog.likes.length == 0) ? (
-                                                <span className='likecount'>{blog.likes.length} likes</span>
-                                            ) : (
-                                                <span className='likecount'>{blog.likes.length} like</span>
-                                            )}
-                                        </span>
-
-                                        <span>
-                                            <Link to={'/edit'} state={{ edit: blog, goto: '/profile' }}><i class="fa-solid fa-pen-to-square op"></i></Link>
-                                            <i class="fa-solid fa-trash op" onClick={() => delete_byte(blog._id)}></i>
-
-                                        </span>
+                            <div key={index} className='col-lg-6 col-12 mb-5'>
+                                <div className='p-blog mx-auto ' id={'p-blog' + index}>
+                                    <div className='mx-auto'>
+                                        <img src={imp(blog.image)} className='img-fluid mx-auto'></img>
                                     </div>
 
+                                    <div className='mx-auto'>
+                                        <div className='p-blog-in'>
+                                            <span>{blog.title}</span>
+
+                                            <Link to={'/blog'} state={{ blog: blog }}>{blog.content}</Link>
+
+                                        </div>
+                                        <div className='p-cmtlikediv mx-auto' id={'cmtlkdiv' + index}>
+                                            <span>
+                                                <i className="fa-regular fa-heart op" onClick={() => likehandler(index, blog._id)} id={index}></i>
+                                                &nbsp;
+                                                {(blog.likes.length > 1 || blog.likes.length == 0) ? (
+                                                    <span className='likecount'>{blog.likes.length} likes</span>
+                                                ) : (
+                                                    <span className='likecount'>{blog.likes.length} like</span>
+                                                )}
+                                            </span>
+
+                                            <span>
+                                                <Link to={'/edit'} state={{ edit: blog, goto: '/profile' }}><i class="fa-solid fa-pen-to-square op"></i></Link>
+                                                <i class="fa-solid fa-trash op" onClick={() => delete_byte(blog._id)}></i>
+
+                                            </span>
+                                        </div>
+
+
+                                    </div>
+
 
                                 </div>
-
 
                             </div>
+                        )
 
-                        </div>
-                    )
-                    
-                    ):(
+                    ) : (
                         <div className='nobytes'>No Bytes yet...</div>
                     )}
-                    
+
                 </div>
 
             </div>

@@ -47,7 +47,7 @@ function App() {
     setCurrentuser(cred.user)
 
     setAbout(cred.about)
-    //console.log(cred.about)
+   
   }
   async function logouthandler() {
     await axios.get('http://localhost:777/logout')

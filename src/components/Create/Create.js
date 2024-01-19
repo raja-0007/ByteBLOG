@@ -49,7 +49,7 @@ function Create({ addbyte }) {
 
                         <span class="addimg">
                             <input type="file" name="image" accept="image/*" id="imgfile" onChange={imagehandler} />
-                            <label for='imgfile' className='img-inp'>{/*<i class="fa-solid fa-cloud-arrow-up"></i>*/}<img src={uplogo}></img><span id='imginp_txt'>upload image</span></label>
+                            <label for='imgfile' className='img-inp'><img src={uplogo}></img><span id='imginp_txt'>upload image</span></label>
                         </span>
                         <button id="postbtn" className="c-pbtn" type="submit">post</button>
                     </div>

@@ -6,11 +6,11 @@ import logo2 from '../images/bblogo22.png'
 import feather from '../images/feather.png'
 import Hblog from './Hblog'
 import logo from '../images/bblogo2.png'
-function Home({ usermail, currentuser}) {
+function Home({ usermail, currentuser }) {
 
     const [blogs, setBlogs] = useState([])
     const navigate = useNavigate()
-    
+
     useEffect(() => {
 
         console.log('mounted')
@@ -46,10 +46,10 @@ function Home({ usermail, currentuser}) {
             blogs.forEach((blog, index) => {
 
                 blog.likes.forEach(like => {
-                    //console.log(like.user, usermail)
+
                     if (like.user == usermail) {
                         document.getElementById(index).className = 'fa-solid fa-heart op2'
-                        //console.log(document.getElementById(index).className)
+
 
 
                     }
@@ -66,7 +66,6 @@ function Home({ usermail, currentuser}) {
 
     let imp = (imgname) => {
 
-        //console.log(imgname)
 
         return require('../images/' + imgname)
 
@@ -89,18 +88,18 @@ function Home({ usermail, currentuser}) {
 
             }
         }
-        
-        
+
+
 
     }
     let liked = (index, id, likelist) => {
         document.getElementById(index).style.transition = 'all .3s'
         document.getElementById(index).className = 'fa-solid fa-heart op2'
-        //setLikes([...likes,{user:usermail}])
+        
         setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: likelist }) : (blog)))
 
     }
-    
+
 
 
 
@@ -114,7 +113,7 @@ function Home({ usermail, currentuser}) {
                 <div className='col-12 p-0'>
                     <div className='h-1 ps-3 pe-3'>
                         <div><img className='logo2' src={logo2}></img></div>
-                        
+
                         <div>
                             <span class="h-bztitle text-light">ByteBLOG</span>
                             <span class="h-bzquote">Where the Internet is about availability of information,<br /> blogging is
@@ -135,7 +134,7 @@ function Home({ usermail, currentuser}) {
                 </div>
                 <div className='col-lg-10 mx-auto mt-5'>
                     <div className='row'>
-                        {/*<Hblog usermail={usermail} blog={blog} index={index} delete_byte={delete_byte} />*/}
+                        
                         {blogs.map((blog, index) =>
                             <div key={index} className='col-lg-3 col-sm-6 col-12 mb-5'>
                                 <div className='blog mx-auto'>
@@ -163,7 +162,7 @@ function Home({ usermail, currentuser}) {
                                                 </span>
 
                                                 <span>
-                                                    <Link to={'/edit'} state={{ edit: blog, goto:'/' }}><i class="fa-solid fa-pen-to-square op"></i></Link>
+                                                    <Link to={'/edit'} state={{ edit: blog, goto: '/' }}><i class="fa-solid fa-pen-to-square op"></i></Link>
                                                     <i class="fa-solid fa-trash op" onClick={() => delete_byte(blog._id)}></i>
 
                                                 </span>
@@ -181,7 +180,7 @@ function Home({ usermail, currentuser}) {
                                                 </span>
 
                                                 <Link to={'/blog'} state={{ blog: blog }} className='cmt'><i class="fa-solid fa-message op"></i></Link></div>)}
-                                        {/*<i class="fa-solid fa-heart"></i>*/}
+                                       
                                     </div>
 
 
@@ -191,9 +190,9 @@ function Home({ usermail, currentuser}) {
                         )}
                     </div>
                 </div>
-                
+
             </div>
-            
+
         </>
     )
 }

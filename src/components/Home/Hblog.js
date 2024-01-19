@@ -7,7 +7,6 @@ function Hblog({ usermail, blog, index, delete_byte }) {
     const [islike, setIslike] = useState(false)
     let imp = (imgname) => {
 
-        //console.log(imgname)
 
         return require('../images/' + imgname)
 
@@ -99,7 +98,7 @@ function Hblog({ usermail, blog, index, delete_byte }) {
                             </span>
 
                             <Link to={'/blog'} state={{ blog: blog }} className='cmt'><i class="fa-solid fa-message op"></i></Link></div>)}
-                    {/*<i class="fa-solid fa-heart"></i>*/}
+                    
                 </div>
 
 
