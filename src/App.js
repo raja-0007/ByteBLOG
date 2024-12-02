@@ -24,12 +24,9 @@ function App() {
   useEffect(() => {
     let authentication = async () => {
       const usermailItem = localStorage.getItem('usermailItem')
-      const currentuserItem = localStorage.getItem('currentuserItem')
-      if(usermailItem && currentuserItem){
-        setUsermail(usermailItem)
-        setCurrentuser(currentuserItem)
-      }
-
+      setUsermail(usermailItem)
+      await axios.get('http://localhost:777/authentication/'+usermailItem)
+        .then(res => setcred(res.data))
     }
     let getdata = async () => {
 
@@ -45,14 +42,12 @@ function App() {
 
 
   }, [])
-  // async function setcred(cred) {
-  //   setUsermail(cred.email)
+  async function setcred(cred) {
+    setCurrentuser(cred.user)
 
-  //   setCurrentuser(cred.user)
-
-  //   setAbout(cred.about)
+    setAbout(cred.about)
    
-  // }
+  }
   async function logouthandler() {
     await axios.get('http://localhost:777/logout')
       .then(res => console.log(res.data))
