@@ -161,7 +161,7 @@ function Profile({ currentuser, usermail, pedit, pabout }) {
                             <div key={index} className='col-lg-6 col-12 mb-5'>
                                 <div className='p-blog mx-auto ' id={'p-blog' + index}>
                                     <div className='mx-auto'>
-                                        <img src={imp(blog.image)} className='img-fluid mx-auto'></img>
+                                        <img src={"http://localhost:777/images/" + blog.image} alt={"image"} className='img-fluid mx-auto'></img>
                                     </div>
 
                                     <div className='mx-auto'>

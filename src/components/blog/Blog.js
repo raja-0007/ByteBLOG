@@ -39,7 +39,7 @@ function Blog({ usermail, currentuser }) {
         e.preventDefault()
 
 
-        await axios.post('http://localhost:777/comment', { id: id, comment: comment })
+        await axios.post('http://localhost:777/comment', { id: id, comment: comment, username: currentuser, email: usermail })
             .then(res => setComments(res.data.comments))
         let src = 'http://localhost:777/comments/' + id
 
@@ -84,13 +84,13 @@ function Blog({ usermail, currentuser }) {
             document.getElementById('like-icon').style.transition = 'all 0s'
             if (className == 'fa-regular fa-heart op') {
                 document.getElementById('like-icon').className = 'fa-solid fa-feather op3'
-                await axios.post('http://localhost:777/like', { id: id, action: 'like' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'like', email: usermail })
                     .then(res => setTimeout(() => liked(res.data), 500))
 
             }
             else {
                 document.getElementById('like-icon').className = 'fa-regular fa-heart op'
-                await axios.post('http://localhost:777/like', { id: id, action: 'unlike' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'unlike', email: usermail })
                     .then(res => setLikes(res.data))
 
             }
@@ -118,7 +118,7 @@ function Blog({ usermail, currentuser }) {
         <div className='row p-0 mt-5'>
             <div className='col-sm-10 col-11 p-0 pb-5 mb-5 mx-auto blog-wrapper'>
 
-                <div className='imgdiv mx-auto'><img src={setimg(image)} className='img-fluid mx-auto'></img></div>
+                <div className='imgdiv mx-auto'><img src={"http://localhost:777/images/" + image} alt={"image"} className='img-fluid mx-auto'></img></div>
                 <div className='blogdiv mx-auto'>
                     <span>{title}</span>
                     <span>{content}</span>

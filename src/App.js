@@ -23,8 +23,12 @@ function App() {
   const [blogs, setBlogs] = useState([])
   useEffect(() => {
     let authentication = async () => {
-      await axios.get('http://localhost:777/authentication')
-        .then(res => setcred(res.data))
+      const usermailItem = localStorage.getItem('usermailItem')
+      const currentuserItem = localStorage.getItem('currentuserItem')
+      if(usermailItem && currentuserItem){
+        setUsermail(usermailItem)
+        setCurrentuser(currentuserItem)
+      }
 
     }
     let getdata = async () => {
@@ -41,23 +45,26 @@ function App() {
 
 
   }, [])
-  async function setcred(cred) {
-    setUsermail(cred.email)
+  // async function setcred(cred) {
+  //   setUsermail(cred.email)
 
-    setCurrentuser(cred.user)
+  //   setCurrentuser(cred.user)
 
-    setAbout(cred.about)
+  //   setAbout(cred.about)
    
-  }
+  // }
   async function logouthandler() {
     await axios.get('http://localhost:777/logout')
       .then(res => console.log(res.data))
     setCurrentuser('')
     setUsermail('')
+    localStorage.removeItem('usermailItem')
+    localStorage.removeItem('currentuserItem')
     
   }
   async function loginhandler(mail, user) {
-
+    localStorage.setItem('usermailItem', mail)
+    localStorage.setItem('currentuserItem', user)
     setUsermail(mail)
     setCurrentuser(user)
   }
@@ -74,7 +81,7 @@ function App() {
   let pedit=async(name,about)=>{
      setCurrentuser(name)
      setAbout(about)
-     await axios.post('http://localhost:777/editprofile',{name:name,about:about})
+     await axios.post('http://localhost:777/editprofile',{name:name,about:about, email:usermail})
      .then(console.log('profile edited'))
   }
   
@@ -96,7 +103,7 @@ function App() {
           <Route path='/create' element={
             <>
               <Navbar logouthandler={logouthandler} currentuser={currentuser} />
-              <Create addbyte={addbyte} />
+              <Create usermail={usermail} currentuser={currentuser} addbyte={addbyte} />
               <Footer/>
             </>
           }></Route>

@@ -13,14 +13,11 @@ function Home({ usermail, currentuser }) {
 
     useEffect(() => {
 
-        console.log('mounted')
         let getdata = async () => {
 
             await axios.get('http://localhost:777/home')
-                .then(res => setBlogs(res.data))
-                .then(console.log(blogs))
+                .then(res => {setBlogs(res.data); console.log('dataaaaaa', res.data)})
                 .catch(err => console.log(err))
-            console.log('returned')
 
         }
 
@@ -64,25 +61,19 @@ function Home({ usermail, currentuser }) {
 
     }, [blogs])
 
-    let imp = (imgname) => {
-
-
-        return require('../images/' + imgname)
-
-    }
     let likehandler = async (index, id) => {
         if (usermail !== '') {
             let className = document.getElementById(index).className
             document.getElementById(index).style.transition = 'all 0s'
             if (className == 'fa-regular fa-heart op') {
                 document.getElementById(index).className = 'fa-solid fa-feather op3'
-                await axios.post('http://localhost:777/like', { id: id, action: 'like' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'like', email: usermail })
                     .then(res => setTimeout(() => liked(index, id, res.data), 500))
 
             }
             else {
                 document.getElementById(index).className = 'fa-regular fa-heart op'
-                await axios.post('http://localhost:777/like', { id: id, action: 'unlike' })
+                await axios.post('http://localhost:777/like', { id: id, action: 'unlike', email: usermail })
                     .then(res => setBlogs(blogs.map(blog => blog._id == id ? ({ ...blog, likes: res.data }) : (blog)))
                     )
 
@@ -139,7 +130,7 @@ function Home({ usermail, currentuser }) {
                             <div key={index} className='col-lg-3 col-sm-6 col-12 mb-5'>
                                 <div className='blog mx-auto'>
                                     <div className='mx-auto'>
-                                        <img src={imp(blog.image)} className='img-fluid mx-auto'></img>
+                                        <img src={"http://localhost:777/images/" + blog.image} alt={"image"} className='img-fluid mx-auto'></img>
                                     </div>
 
                                     <div className='mx-auto'>

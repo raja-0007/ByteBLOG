@@ -4,7 +4,7 @@ import axios, { formToJSON } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import feather from '../images/feather.png'
 import uplogo from '../images/image_upload.png'
-function Create({ addbyte }) {
+function Create({ addbyte, usermail, currentuser }) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [image, setImage] = useState('')
@@ -32,6 +32,8 @@ function Create({ addbyte }) {
         formdata.append('title', title)
         formdata.append('content', content)
         formdata.append('image', image)
+        formdata.append('email', usermail)
+        formdata.append('username', currentuser)
         await axios.post('http://localhost:777/create', formdata)
             .then(navigate('/'))
         
